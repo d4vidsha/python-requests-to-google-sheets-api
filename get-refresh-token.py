@@ -16,19 +16,24 @@ CLIENT_SECRET = "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"
 
 ACCESS_CODE = "4/0AX4XfWg1LK1OYCLBf0iBXPXidi5HTeLMEQyx8HixQXfpquEmZlAdLCGuukh5Z0aPHx_kVg"
 
-# get refresh token/access token from access code
-url = "https://accounts.google.com/o/oauth2/token"
-data = {
-    "grant_type": "authorization_code",
-    "code": ACCESS_CODE,
-    "client_id": CLIENT_ID,
-    "client_secret": CLIENT_SECRET,
-    "scope": "https://www.googleapis.com/auth/spreadsheets",
-    "redirect_uri": "http://localhost"
-}
-headers = {
-    "content-type": "application/x-www-form-urlencoded"
-}
+# step 3: run this script
+def main():
+    # get refresh token/access token from access code
+    url = "https://accounts.google.com/o/oauth2/token"
+    data = {
+        "grant_type": "authorization_code",
+        "code": ACCESS_CODE,
+        "client_id": CLIENT_ID,
+        "client_secret": CLIENT_SECRET,
+        "scope": "https://www.googleapis.com/auth/spreadsheets",
+        "redirect_uri": "http://localhost"
+    }
+    headers = {
+        "content-type": "application/x-www-form-urlencoded"
+    }
 
-r = request("POST", url, data=data, headers=headers)
-print(r.text)
+    r = request("POST", url, data=data, headers=headers)
+    print(r.text)
+
+if __name__ == "__main__":
+    main()
