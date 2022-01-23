@@ -2,10 +2,10 @@ from requests import request
 import json
 
 # config
-CLIENT_ID = "794014765743-15nu01eqhjdpo4fh93lm404md8mic6ni.apps.googleusercontent.com"
-CLIENT_SECRET = "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"
-REFRESH_TOKEN = "1//0go5ygZcgr82mCgYIARAAGBASNwF-L9IrBaWQIu4a-38XKInYWYr9Hx66vY_wvhNg0g5lq5hMG9vzysGwtSDAh666VXFbNeWlg4M"
-SID = "1YUCXFilyFqR-C8LNGSm551GhT1Nh9G3q_5KjUqnjIds"
+CLIENT_ID = "240803594114-h5ckv91h9175hdtkkj72g9phcok6eln1.apps.googleusercontent.com"
+CLIENT_SECRET = "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"
+REFRESH_TOKEN = "1//0gfUnz1ALtJTSCgYIARAAGBASNwF-L9IreNgLeKCxE-CMZ16eRq3402bOI-d1eOlRbyYLexreg4PZ7BprCWo5ZVMmmYx_Ui4WC_M"
+SID = "1g4uXxVGpKg-5-dDQg7CQMVSbfU56vE8jUc6mdE-cFnA"
 
 # constants
 SPACE = " "
@@ -78,16 +78,21 @@ class gsheets():
         self.token = data["access_token"]
         self.token_type = data["token_type"]
 
-    def update_cells(self, messages, spreadsheet_id):
+    def update_cells(self, messages, index, spreadsheet_id, row_fill=True):
         url = "https://sheets.googleapis.com/v4/spreadsheets/" \
             + f"{spreadsheet_id}:batchUpdate"
         
         body = {
-            "requests": generate_request(messages, 0),
+            "requests": [],
             "includeSpreadsheetInResponse": False,
             "responseRanges": [],
             "responseIncludeGridData": False
         }
+
+        if row_fill:
+            body["requests"] = generate_request(messages, index, row_fill=True)
+        else:
+            body["requests"] = generate_request(messages, index, row_fill=False)
         
         headers = {
             "Authorization": self.token_type + SPACE + self.token
@@ -98,9 +103,9 @@ class gsheets():
 
 def main():
     # post all important info to Google Sheets
-    messages = ("cell1", "cell2", "cell3", "cell4")
+    messages = ("cell", "row", "cell3", "4")
     gs = gsheets(REFRESH_TOKEN)
-    r = gs.update_cells(messages, SID)
+    r = gs.update_cells(messages, 1, SID, row_fill=False)
     print(r)
 
 if __name__ == "__main__":

@@ -8,13 +8,13 @@
 from requests import request
 
 # step 1: fill in the client credentials
-CLIENT_ID = "794014765743-15nu01eqhjdpo4fh93lm404md8mic6ni.apps.googleusercontent.com"
-CLIENT_SECRET = "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"
+CLIENT_ID = "240803594114-h5ckv91h9175hdtkkj72g9phcok6eln1.apps.googleusercontent.com"
+CLIENT_SECRET = "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"
 
 # step 2: get a temporary access code manually
-# https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=auto&client_id=794014765743-15nu01eqhjdpo4fh93lm404md8mic6ni.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/spreadsheets&redirect_uri=http://localhost
+# https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=auto&client_id=240803594114-h5ckv91h9175hdtkkj72g9phcok6eln1.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/spreadsheets&redirect_uri=http://localhost
 
-ACCESS_CODE = "4/0AX4XfWiXLSF3gy1-yckuXNeMWfCM5XiJSvbxZluT3kh628dJTdgBWNlcHB4oU07elF2Obg"
+ACCESS_CODE = "4/0AX4XfWg1LK1OYCLBf0iBXPXidi5HTeLMEQyx8HixQXfpquEmZlAdLCGuukh5Z0aPHx_kVg"
 
 # get refresh token/access token from access code
 url = "https://accounts.google.com/o/oauth2/token"
